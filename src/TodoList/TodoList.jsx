@@ -2,6 +2,7 @@ import "./todo-list.css";
 import { useEffect, useRef, useState } from "react";
 import { FaCircleInfo, FaMagnifyingGlass, FaPen, FaTrash } from "react-icons/fa6";
 import { v4 as uuid } from "uuid";
+import { LiaClipboardListSolid } from "react-icons/lia";
 
 const TodoList = () => {
 	const [title, setTitle] = useState("");
@@ -18,6 +19,7 @@ const TodoList = () => {
 	const addTodo = (title) => {
 		if (title === "") {
 			setIsError(true);
+			inputRef.current.focus();
 		} else {
 			setIsError(false);
 
@@ -39,6 +41,7 @@ const TodoList = () => {
 	const TaskList = ({ taskArray, setTaskArray, setTitle }) => {
 		const [arrayStorage, setArrayStorage] = useState(taskArray);
 		const [showModal, setShowModal] = useState(false);
+		const [activeTag, setActiveTag] = useState("all");
 
 		const filterList = (category) => {
 			switch (category) {
@@ -60,7 +63,7 @@ const TodoList = () => {
 		return (
 			<>
 				<div className="task-list">
-					{arrayStorage &&
+					{arrayStorage.length > 0 ? (
 						arrayStorage.map((task) => {
 							return (
 								<div
@@ -76,6 +79,7 @@ const TodoList = () => {
 									<p>{task.title}</p>
 									<button
 										type="button"
+										className="editBtn"
 										onClick={() => {
 											setCurrentTaskId(task.id);
 											setTitle(task.title);
@@ -85,6 +89,7 @@ const TodoList = () => {
 									</button>
 									<button
 										type="button"
+										className="delBtn"
 										onClick={() => {
 											setTaskArray(taskList.filter((item) => item.id !== task.id));
 										}}>
@@ -92,7 +97,15 @@ const TodoList = () => {
 									</button>
 								</div>
 							);
-						})}
+						})
+					) : (
+						<p className="empty">
+							<span className="icon">
+								<LiaClipboardListSolid />
+							</span>
+							Nothing to show.
+						</p>
+					)}
 				</div>
 				<footer>
 					<form
@@ -107,26 +120,36 @@ const TodoList = () => {
 								filterList(e.target.value);
 							}}
 						/>
-						<button
-							type="button"
-							className="search-btn">
+						<div className="search-btn">
 							<FaMagnifyingGlass />
-						</button>
+						</div>
 					</form>
 					<div className="tags">
 						<button
 							type="button"
-							onClick={() => filterList("all")}>
+							className={`${activeTag === "all" && "active-btn"}`}
+							onClick={() => {
+								filterList("all");
+								setActiveTag("all");
+							}}>
 							All
 						</button>
 						<button
 							type="button"
-							onClick={() => filterList("active")}>
+							className={`${activeTag === "active" && "active-btn"}`}
+							onClick={() => {
+								filterList("active");
+								setActiveTag("active");
+							}}>
 							Active
 						</button>
 						<button
 							type="button"
-							onClick={() => filterList("completed")}>
+							className={`${activeTag === "completed" && "active-btn"}`}
+							onClick={() => {
+								filterList("completed");
+								setActiveTag("completed");
+							}}>
 							Completed
 						</button>
 						<button
@@ -142,6 +165,7 @@ const TodoList = () => {
 					className="confirmationBg"
 					style={showModal ? { display: "block" } : { display: "none" }}>
 					<div className="confirmation">
+						<FaCircleInfo className="info" />
 						<p>Are you sure that you want to delete all of the items?</p>
 						<div className="confirmation-btns">
 							<button
@@ -214,7 +238,9 @@ const TodoList = () => {
 				/>
 
 				{isError && (
-					<p id="errnote">
+					<p
+						id="errnote"
+						on>
 						<FaCircleInfo /> Please enter something.
 					</p>
 				)}

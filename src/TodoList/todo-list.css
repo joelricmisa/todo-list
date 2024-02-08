@@ -31,7 +31,6 @@ section {
 	margin: 1rem 0;
 	width: 100%;
 	display: flex;
-	border: 1px solid black;
 }
 .form-control {
 	flex: 1;
@@ -42,6 +41,30 @@ section {
 	font-size: 1.1rem;
 	padding: 5px 20px;
 	cursor: pointer;
+	background-color: var(--primaryColor);
+	color: white;
+	border: 1px solid black;
+	border-left: unset;
+	border-radius: 0 3px 3px 0;
+}
+.editBtn {
+	color: white;
+	background-color: green;
+	border-radius: 3px;
+}
+.delBtn {
+	color: white;
+	background-color: red;
+	border-radius: 3px;
+}
+
+.editBtn:hover {
+	filter: brightness(120%);
+	scale: 1.05;
+}
+.delBtn:hover {
+	filter: brightness(90%);
+	scale: 1.05;
 }
 
 #errnote {
@@ -91,6 +114,21 @@ section {
 	cursor: pointer;
 	padding: 5px 8px;
 }
+
+.empty {
+	height: 350px;
+	justify-content: center;
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	font-size: 20px;
+}
+.empty .icon {
+	display: inline-block;
+	font-size: 40px;
+	margin-top: 5px;
+}
+
 .highlight-card {
 	background-color: rgba(104, 101, 101, 0.3);
 }
@@ -117,8 +155,13 @@ footer form {
 }
 
 .search-btn {
+	border-radius: 3px 0 0 3px;
+	background-color: grey;
+	color: white;
+	border: 1px solid black;
+	border-right: unset;
 	font-size: 1.1rem;
-	padding: 5px 20px;
+	padding: 3px 20px;
 }
 
 .tags {
@@ -130,6 +173,11 @@ footer form {
 	font-size: 1.1rem;
 	padding: 5px 20px;
 	cursor: pointer;
+}
+
+.active-btn {
+	background-color: #055c9d;
+	color: white;
 }
 
 .confirmationBg {
@@ -144,10 +192,13 @@ footer form {
 input[type="checkbox"] {
 	width: 20px;
 	height: 20px;
+	accent-color: var(--primaryColor);
 }
 
 .confirmation {
 	position: absolute;
+	border: 1px solid rgba(0, 0, 0, 0.5);
+	box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
@@ -156,7 +207,7 @@ input[type="checkbox"] {
 	padding: 3rem 2rem;
 	display: grid;
 	place-content: center;
-	min-height: 250px;
+	gap: 10px;
 	font-size: 1.2rem;
 }
 .confirmation-btns {
@@ -170,4 +221,12 @@ input[type="checkbox"] {
 	font-size: 1.1rem;
 	padding: 5px 20px;
 	cursor: pointer;
+}
+
+.info {
+	color: rgb(241, 75, 75);
+	font-size: 50px;
+	display: block;
+	margin: auto;
+	margin-bottom: 20px;
 }
