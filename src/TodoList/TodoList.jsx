@@ -161,27 +161,30 @@ const TodoList = () => {
 				</footer>
 
 				<div
-					role="alert"
 					className="confirmationBg"
+					style={showModal ? { display: "block" } : { display: "none" }}
+					onClick={() => setShowModal(false)}></div>
+
+				<div
+					className="confirmation"
+					role="alert"
 					style={showModal ? { display: "block" } : { display: "none" }}>
-					<div className="confirmation">
-						<FaCircleInfo className="info" />
-						<p>Are you sure that you want to delete all of the items?</p>
-						<div className="confirmation-btns">
-							<button
-								type="button"
-								onClick={() => {
-									setTaskArray([]);
-									setTitle("");
-								}}>
-								Confirm
-							</button>
-							<button
-								type="button"
-								onClick={() => setShowModal(false)}>
-								Cancel
-							</button>
-						</div>
+					<FaCircleInfo className="info" />
+					<p>Are you sure that you want to delete all of the items?</p>
+					<div className="confirmation-btns">
+						<button
+							type="button"
+							onClick={() => {
+								setTaskArray([]);
+								setTitle("");
+							}}>
+							Confirm
+						</button>
+						<button
+							type="button"
+							onClick={() => setShowModal(false)}>
+							Cancel
+						</button>
 					</div>
 				</div>
 			</>
@@ -190,8 +193,13 @@ const TodoList = () => {
 
 	return (
 		<section>
-			<h1>
-				Things to do:{" "}
+			<h1 className="header">
+				<img
+					src="/logo.svg"
+					alt="logo"
+					height={50}
+				/>
+				<span>Things to do: </span>
 				<span className="items-left">
 					{taskList.length >= 1 ? `(${taskList.length} ${taskList.length > 1 ? "items left" : "item left"})` : undefined}
 				</span>

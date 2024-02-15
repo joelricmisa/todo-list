@@ -1,17 +1,28 @@
 section {
 	max-width: 900px;
-	margin: 5rem auto;
-	border: 1px solid black;
+	margin: auto;
+	border: 1.5px solid gray;
 	border-radius: 10px;
-	padding: 1rem;
+	padding: 1.5rem;
 	height: 550px;
 	display: flex;
 	flex-direction: column;
 	position: relative;
+	top: 50%;
+
+	transform: translateY(-50%);
+	background: white;
+	box-shadow: 0 0 8px white;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	gap: 20px;
 }
 
 .items-left {
-	float: right;
+	margin-left: auto;
 	font-size: 1.2rem;
 }
 
@@ -180,19 +191,21 @@ footer form {
 	color: white;
 }
 
-.confirmationBg {
-	position: fixed;
-	height: 100vh;
-	width: 100vw;
-	background-color: rgba(0, 0, 0, 0.3);
-	top: 0;
-	left: 0;
-}
-
 input[type="checkbox"] {
 	width: 20px;
 	height: 20px;
 	accent-color: var(--primaryColor);
+}
+
+.confirmationBg {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	inset: 0;
+	transform: scale(2);
+
+	border-radius: 5px;
+	background-color: rgba(0, 0, 0, 0.3);
 }
 
 .confirmation {
@@ -209,6 +222,7 @@ input[type="checkbox"] {
 	place-content: center;
 	gap: 10px;
 	font-size: 1.2rem;
+	text-align: center;
 }
 .confirmation-btns {
 	display: flex;

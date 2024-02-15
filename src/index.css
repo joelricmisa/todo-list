@@ -16,3 +16,8 @@
 	margin: 0;
 	box-sizing: border-box;
 }
+.app {
+	height: 100dvh;
+	background-color: rgba(0, 0, 0, 0.4);
+	overflow: hidden;
+}
